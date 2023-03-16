@@ -1,0 +1,54 @@
+<script setup>
+
+defineProps(["isModalVisible"]);
+const emit = defineEmits(["close-modal"]);
+
+function closeModal() {
+  emit("close-modal", false);
+}
+</script>
+
+<template>
+  <div class="modal-mask" v-if="isModalVisible" @click="closeModal()">
+    <el-button :plain="true" disabled>
+      <slot></slot>
+    </el-button>
+  </div>
+</template>
+
+<style scoped>
+.modal-mask {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+}
+.modal-container {
+  width: 80%;
+  height: auto;
+  margin: 100px;
+  position: relative;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  box-sizing: border-box;
+}
+
+.el-button {
+align-items: center;
+  width: 50%;
+  height: auto;
+  margin: 20%;
+  position: relative;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  box-sizing: border-box;
+}
+</style>
