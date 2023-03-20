@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 
-const email = "";
-const password = "";
+const email = ref("");
+const password = ref("");
 </script>
 
 <template>
