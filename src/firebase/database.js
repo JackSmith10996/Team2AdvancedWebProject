@@ -1,5 +1,5 @@
 import{initializeApp} from "firebase/app";
-import{getAuth} from "firebase/auth";
+import{getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import{getFirestore, serverTimestamp} from "firebase/firestore";
 
 
@@ -17,4 +17,4 @@ const firebaseAuthentication = getAuth();
 const firebaseFireStore = getFirestore();
 const timestamp = serverTimestamp();
 
-export{app,firebaseAuthentication,firebaseFireStore,timestamp};
+export{app,firebaseAuthentication,firebaseFireStore,timestamp,signInWithEmailAndPassword};
