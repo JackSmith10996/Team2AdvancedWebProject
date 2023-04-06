@@ -1,100 +1,106 @@
 <template>
-  <el-menu
-    :default-active="activeIndex"
-    class="el-menu-demo"
-    active-text-color="red"
-    background-color="black"
-    text-color="white"
-    mode="horizontal"
-    :ellipsis="false"
-    @select="handleSelect"
-  >
-    <RouterLink to="/"><el-menu-item index="0"><img src="./heartbeat.png" alt="Logo"  width="150" height="55"></el-menu-item></RouterLink>
-    <h1>Cardiomyopathy</h1>
-    <div class="flex-grow" />
-    <RouterLink to="/"><el-menu-item index="1">Home</el-menu-item></RouterLink>
-    <el-sub-menu index="2">
-      <template #title>About</template>
-      <RouterLink to="/help"> <el-menu-item index="2-1">Help</el-menu-item></RouterLink>
-      <RouterLink to="/News"><el-menu-item index="2-2">News Feed</el-menu-item></RouterLink>
-    </el-sub-menu>
-    <div class="Modals" @keyup.esc.stop="closeModal()">
-    <el-container>
-      <el-button  @click="showModal()" color="transparent"
-       >Login
-      </el-button>
-      <modal :is-modal-visible="isModalVisible" @close-modal="closeModal()">
-        <login></login>
-      </modal>
-    </el-container>
-  </div>
+  <header class="navbar">
+    <a><RouterLink to="/"><img src="./heartbeat.png" alt="Logo"  width="120" height="55" ></RouterLink></a>
+    <h2>Cardiomyopathy</h2>
+    <a><RouterLink to="/">Home</RouterLink></a> 
+    <a><RouterLink to="/help">Help</RouterLink></a>
+    <a><RouterLink to="/News">News Feed</RouterLink></a>  
+    <a><RouterLink to="/HomePageChart">Chart</RouterLink></a>  
+    <a><RouterLink to="/Login" v-if="!user">Login</RouterLink></a>
+    <button class = "logout" color= "transparent"  @click = "logout" v-if="user">Logout {{user}}</button>
     <div class="search">
-    <el-input
+    <input
       v-model="input2"
       placeholder="Search"
-      :prefix-icon="Search"
     />
-  </div>
-  </el-menu>
-  
-  <router-view />
+    </div>
+  </header>
+  <router-view 
+  :user="user"
+  @logout="logout"
+  />
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { useRouter } from "vue-router";
+import {
+  firebaseAuthentication,
+  onAuthStateChanged,
+  signOut,
+} from "./firebase/database";
 
-import Modal from "./views/Modal.vue";
-import Login from "./views/Login.vue";
-import { Search } from '@element-plus/icons-vue'
-const activeIndex = ref('1')
-const handleSelect = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+const user = ref();
+const errorLogout = ref(null);
+const input2 = ref('');
+onAuthStateChanged(firebaseAuthentication, (currentUser) => {
+  if (currentUser) {
+    user.value = currentUser.displayName;
 
-const input1 = ref('')
-const input2 = ref('')
+  }
+})
+const router = useRouter();
 
-
-const isModalVisible = ref(false);
-
-function showModal() {
-  isModalVisible.value = true;
-}
-
-function closeModal() {
-  isModalVisible.value = false;
+ 
+function logout() {
+  signOut(firebaseAuthentication).then(
+    () => {
+      user.value = '';
+      router.push("login");
+    },
+    (error) => {
+      errorLogout.value = error.message;
+    }
+  );
 }
 </script>
 
 <style>
-.flex-grow {
-  flex-grow: 1;
-}
+
 h1{
 
   color: black;
   font-size: 35px;
 }
+
 .search{
 
   font-size: 30px;
   size: 100px;
+  padding-top: 10px;
+ 
   
 
 }
-.Modals{
+.logout{
+
+  margin-top: 10px;
 
 
-  align-items: center;
-  width: auto;
-  height: auto;
-  margin-top: .8%;
-  margin-right: .25%;
-  position: relative;
-  
 }
 
+header{
+  
 
+  color: black;
+}
+/* Navbar container */
+.navbar {
+  overflow: hidden;
+  background-color: white;
+  font-family: Arial;
+  
 
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  padding: 14px 30px;
+  text-decoration: none;
+}
 
 </style>
