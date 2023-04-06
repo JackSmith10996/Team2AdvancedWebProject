@@ -72,6 +72,7 @@ function login() {
     <el-button color="black" style="margin-left: 49%">
       <a class ="register" ><RouterLink to="/Register">Register</RouterLink></a>
     </el-button>
+    <a class ="forgot" ><RouterLink to="/ForgottenPassword">Forgotten Password</RouterLink></a>
   </el-form>
 </template>
 
