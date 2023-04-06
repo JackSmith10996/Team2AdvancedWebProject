@@ -5,6 +5,7 @@
     <a><RouterLink to="/">Home</RouterLink></a> 
     <a><RouterLink to="/help">Help</RouterLink></a>
     <a><RouterLink to="/News">News Feed</RouterLink></a>  
+    <a><RouterLink to="/HomePageChart">Chart</RouterLink></a>  
     <a><RouterLink to="/Login" v-if="!user">Login</RouterLink></a>
     <button class = "logout" color= "transparent"  @click = "logout" v-if="user">Logout {{user}}</button>
     <div class="search">
