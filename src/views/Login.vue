@@ -1,13 +1,40 @@
-<script setup lang="ts">
-import { ref } from 'vue';
+<script setup>
+import { ref } from "vue";
+import { firebaseAuthentication, signInWithEmailAndPassword } from "@/firebase/database";
+import { useRouter } from "vue-router";
+
+defineEmits(["login-clicked"])
 
 const email = ref("");
 const password = ref("");
+const errorFirebase = ref(null);
+
+const router = useRouter();
+
+function login() {
+  const info = {
+    email: email.value,
+    password: password.value,
+  };
+
+  signInWithEmailAndPassword( firebaseAuthentication, info.email, info.password)
+    .then(
+      (userCredential) => {
+        // const user = userCredential.user;
+        router.push("/");
+        // console.log("user = ", user)
+        // router.push({ name: 'PostList', params: { user: user} });
+      },
+      (error) => {
+        errorFirebase.value = error.message;
+      }
+    );
+}
 </script>
 
 <template>
-  <el-form label-width="120px" class="demo-ruleForm" @click.stop>
-    <h2>Login</h2><br>
+  <el-form label-width="50px" @submit.prevent>
+    <h2>Login</h2>
 
     <el-form-item label="Email">
       <el-input
@@ -30,11 +57,28 @@ const password = ref("");
       ></el-input>
     </el-form-item>
 
+    <div v-if="errorFirebase">
+      <el-button plain type="danger" disabled icon="el-icon-error">
+        {{ errorFirebase }}
+      </el-button>
+    </div>
+
     <el-form-item>
-      <el-button type="primary" style="margin: auto; margin-right: 5px;">Login</el-button>
-      <a href="#">Reset Password</a>
+      <el-button type="success" style="margin: auto" @click="login">
+        Login
+      </el-button>
+    
     </el-form-item>
+    <el-button color="black" style="margin-left: 49%">
+      <a class ="register" ><RouterLink to="/Register">Register</RouterLink></a>
+    </el-button>
   </el-form>
 </template>
 
-<style></style>
+<style>
+.register{
+
+color: black;
+
+}
+</style>

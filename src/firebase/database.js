@@ -1,7 +1,8 @@
-import{initializeApp} from "firebase/app";
-import{getAuth} from "firebase/auth";
-import{getFirestore, serverTimestamp} from "firebase/firestore";
-
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import { getFirestore, serverTimestamp, collection, onSnapshot, query, where, deleteDoc, getDocs, setDoc } from "firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
 const firebaseConfig = {
   apiKey: "AIzaSyAM2dTUEHbV94G3r1JPykCXbXJK_pXORf0",
@@ -17,4 +18,5 @@ const firebaseAuthentication = getAuth();
 const firebaseFireStore = getFirestore();
 const timestamp = serverTimestamp();
 
-export{app,firebaseAuthentication,firebaseFireStore,timestamp};
+export { app, firebaseAuthentication, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, signOut, updateProfile,
+  firebaseFireStore, timestamp, collection, onSnapshot, serverTimestamp, query, where, deleteDoc, getDocs, setDoc };
