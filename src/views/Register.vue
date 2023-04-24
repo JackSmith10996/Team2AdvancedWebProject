@@ -58,82 +58,94 @@ function register() {
 
 <template>
   <el-form label-width="95px" class="demo-ruleForm" @submit.prevent>
-    <h2>Register</h2>
+   <diV class="register-section">   
+    <h2 id="register-label">Register</h2><br>
 
-    <el-form-item label="First Name">
-      <el-input
-        type="text"
-        placeholder="First Name"
-        required
-        autocomplete="off"
-        v-model="firstName"
-      ></el-input>
-    </el-form-item>
+      <el-form-item label="First Name">
+        <el-input
+          type="text"
+          placeholder="First Name"
+          required
+          autocomplete="off"
+          v-model="firstName"
+        ></el-input>
+      </el-form-item>
 
-    <el-form-item label="Last Name">
-      <el-input
-        type="text"
-        placeholder="Surname"
-        required
-        autocomplete="off"
-        v-model="surname"
-      ></el-input>
-    </el-form-item>
+      <el-form-item label="Last Name">
+        <el-input
+          type="text"
+          placeholder="Surname"
+          required
+          autocomplete="off"
+          v-model="surname"
+        ></el-input>
+      </el-form-item>
 
-    <el-form-item label="Display Name">
-      <el-input
-        type="text"
-        placeholder="Display Name"
-        required
-        autocomplete="off"
-        v-model="displayName"
-      ></el-input>
-    </el-form-item>
+      <el-form-item label-width="auto" label="Display Name">
+        <el-input
+          type="text"
+          placeholder="Display Name"
+          required
+          autocomplete="off"
+          v-model="displayName"
+        ></el-input>
+      </el-form-item>
 
-    <el-form-item label="Email">
-      <el-input
-        type="email"
-        placeholder="email"
-        required
-        autocomplete="off"
-        v-model="email"
-      ></el-input>
-    </el-form-item>
+      <el-form-item label="Email">
+        <el-input
+          type="email"
+          placeholder="email"
+          required
+          autocomplete="off"
+          v-model="email"
+        ></el-input>
+      </el-form-item>
 
-    <el-form-item label="Password" prop="pass">
-      <el-input
-        type="password"
-        placeholder="password"
-        required
-        autocomplete="off"
-        show-password
-        v-model="password"
-      ></el-input>
-    </el-form-item>
+      <el-form-item label="Password" prop="pass">
+        <el-input
+          type="password"
+          placeholder="password"
+          required
+          autocomplete="off"
+          show-password
+          v-model="password"
+        ></el-input>
+      </el-form-item>
 
-    <el-form-item label="Confirm Password" prop="pass">
-      <el-input
-        type="password"
-        placeholder="password"
-        required
-        autocomplete="off"
-        show-password
-        v-model="confirmPassword"
-      ></el-input>
-    </el-form-item>
+      <el-form-item label-width="auto" label="Confirm Password" prop="pass">
+        <el-input
+          type="password"
+          placeholder="password"
+          required
+          autocomplete="off"
+          show-password
+          v-model="confirmPassword"
+        ></el-input>
+      </el-form-item>
 
-    <div v-if="errorRegistration">
-      <el-button plain type="danger" disabled><el-icon><WarnTriangleFilled /></el-icon>
-        {{ errorRegistration }}
-      </el-button>
+      <div v-if="errorRegistration">
+        <el-button plain type="danger" disabled><el-icon><WarnTriangleFilled /></el-icon>
+          {{ errorRegistration }}
+        </el-button>
+      </div>
+
+      <el-form-item>
+        <el-button type="success" style="margin-left: 25%" @click="register"
+          >Register</el-button
+        >
+      </el-form-item>
     </div>
-
-    <el-form-item>
-      <el-button type="success" style="margin: auto" @click="register"
-        >Register</el-button
-      >
-    </el-form-item>
   </el-form>
 </template>
 
-<style></style>
+<style>
+.register-section{
+  display: inline-block;
+  margin-left: 36%;
+  margin-top: 2%;
+}
+
+#register-label{
+  margin-left: 40%;
+}
+</style>

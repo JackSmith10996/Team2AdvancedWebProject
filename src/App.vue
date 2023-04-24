@@ -1,19 +1,20 @@
 <template>
   <header class="navbar">
-    <a><RouterLink to="/"><img src="./heartbeat.png" alt="Logo"  width="120" height="55" ></RouterLink></a>
-    <h2>Cardiomyopathy</h2>
-    <a><RouterLink to="/">Home</RouterLink></a> 
-    <a><RouterLink to="/help">Help</RouterLink></a>
-    <a><RouterLink to="/News">News Feed</RouterLink></a>  
-    <a><RouterLink to="/HomePageChart">Chart</RouterLink></a>  
-    <a><RouterLink to="/Login" v-if="!user">Login</RouterLink></a>
-    <button class = "logout" color= "transparent"  @click = "logout" v-if="user">Logout {{user}}</button>
-    <div class="search">
-    <input
-      v-model="input2"
-      placeholder="Search"
-    />
-    </div>
+    <img class="logo" src="./heartbeat.png" alt="Logo"  width="120" height="55" >
+    <h2 class="logo">Cardiomyopathy</h2>
+    <div class="navbar-items">
+      <button class="nav-button"><RouterLink to="/" class="nav-item">Home</RouterLink></button>
+      <button class="nav-button"><RouterLink to="/help" class="nav-item">Help</RouterLink></button>
+      <button class="nav-button"><RouterLink to="/News" class="nav-item">News Feed</RouterLink></button>
+      <button class="nav-button"><RouterLink to="/Login" v-if="!user" class="nav-item">Login</RouterLink></button>
+      <button class = "logout" color= "transparent"  @click = "logout" v-if="user">Logout {{user}}</button>
+      <div class="search">
+      <input
+        v-model="input2"
+        placeholder="Search"
+      />
+      </div>
+  </div>
   </header>
   <router-view 
   :user="user"
@@ -99,8 +100,32 @@ header{
   font-size: 16px;
   color: black;
   text-align: center;
-  padding: 14px 30px;
+  margin: 14px 30px;
   text-decoration: none;
+}
+
+.nav-item:hover {
+  background-color: transparent;
+}
+
+.nav-button{
+  background-color: transparent;
+  border: 0px red solid;
+  padding: 0;
+}
+
+.search{
+  float: right;
+  margin-right: 15%;
+  padding-top: 0;
+}
+
+.logo{
+  display: inline-block;
+}
+
+.navbar-items{
+  margin-left: 30%;
 }
 
 </style>
