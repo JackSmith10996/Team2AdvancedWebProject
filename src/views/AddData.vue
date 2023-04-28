@@ -1,16 +1,8 @@
 <script setup>
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { firebaseAuthentication, query } from "@/firebase/database";
-import { progressProps } from "element-plus";
+import { doc , setDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 
-let emit = defineEmits(["addData"])
-defineProps({
-    data: {
-        type: Array,
-        default: () => [],
-    },
-})
 
 // data variables
 const ledv = ref("");
@@ -23,13 +15,25 @@ const resv = ref("");
 const rsv = ref("");
 const rvef = ref("");
 
+const docRef = doc(database, "MyCardiopathy", /*User ID*/)
+
+const updateData = await updateDoc(docRef, {
+    ledv: ledv,
+    lesv: lesv,
+    lsv: lsv,
+    lvef: lvef,
+    lvmass: lvmass,
+    redv: redv,
+    resv: resv,
+    rsv: rsv,
+    rvef: rvef
+});
+
+const updateTimestamp = await updateDoc(docRef, {
+    timestamp: serverTimestamp()
+});
+
 const router = useRouter();
-
-function submitData() {
-    emit("addData", ledv.value, lesv.value, lsv.value, lsv.value, lvef.value, lvmass.value, redv.value, resv.value, rsv.value, rvef.value)
-
-    router.push("/Home");
-}
 
 </script>
 
