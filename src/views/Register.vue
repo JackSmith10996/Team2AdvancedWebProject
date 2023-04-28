@@ -12,6 +12,11 @@ const email = ref("");
 const password = ref("");
 const confirmPassword = ref("");
 const errorRegistration = ref("");
+const firstNameError = ref("");
+const surnameError = ref("");
+const displayNameError = ref("");
+const emailError = ref("");
+const passwordError = ref("");
 
 watch(confirmPassword, () => {
   if (
@@ -25,6 +30,56 @@ watch(confirmPassword, () => {
   }
 });
 
+watch(firstName, () => {
+  if (
+    firstName.value == "" || firstName.value.length < 3
+  ) {
+    firstNameError.value = "Please enter at least a 3 characters long First Name!";
+  } else {
+    firstNameError.value = null;
+  }
+});
+
+watch(surname, () => {
+  if (
+    surname.value == "" || surname.value.length < 3
+  ) {
+    surnameError.value = "Please enter at least a 3 characters long surname!";
+  } else {
+    surnameError.value = null;
+  }
+});
+
+watch(displayName, () => {
+  if (
+    displayName.value == "" || displayName.value.length < 3
+  ) {
+    displayNameError.value = "Please enter at least a 3 characters long displayName!";
+  } else {
+    displayNameError.value = null;
+  }
+});
+
+watch(email, () => {
+  if (
+   !email.value.includes("@"&&".") && email.value !== "" || email.value.length < 3 
+  ) {
+    emailError.value = "Please enter a valid Email Addess!";
+  } else {
+    emailError.value = null;
+  }
+});
+
+watch(password, () => {
+  if (
+    password.value == "" || password.value.length < 6
+  ) {
+    passwordError.value = "Your password must be at least 6 characters long!";
+  } else {
+    passwordError.value = null;
+  }
+});
+
 const router = useRouter();
 
 function register() {
@@ -34,7 +89,7 @@ function register() {
     displayName: displayName.value,
   };
 
-  if (!errorRegistration.value) {
+  if (!errorRegistration.value && !firstNameError.value && !surnameError.value &&  !displayNameError.value && !emailError.value) {
     createUserWithEmailAndPassword(firebaseAuthentication, info.email, info.password)
     .then(
       (userCredentials) => {
@@ -71,6 +126,12 @@ function register() {
         ></el-input>
       </el-form-item>
 
+      <div v-if="firstNameError">
+        <el-button plain type="danger" disabled><el-icon><WarnTriangleFilled /></el-icon>
+          {{ firstNameError }}
+        </el-button><br>
+      </div>
+
       <el-form-item label="Last Name">
         <el-input
           type="text"
@@ -80,6 +141,12 @@ function register() {
           v-model="surname"
         ></el-input>
       </el-form-item>
+
+      <div v-if="surnameError">
+        <el-button plain type="danger" disabled><el-icon><WarnTriangleFilled /></el-icon>
+          {{ surnameError }}
+        </el-button><br>
+      </div>
 
       <el-form-item label-width="auto" label="Display Name">
         <el-input
@@ -91,6 +158,12 @@ function register() {
         ></el-input>
       </el-form-item>
 
+      <div v-if="displayNameError">
+        <el-button plain type="danger" disabled><el-icon><WarnTriangleFilled /></el-icon>
+          {{ displayNameError }}
+        </el-button><br>
+      </div>
+
       <el-form-item label="Email">
         <el-input
           type="email"
@@ -100,6 +173,12 @@ function register() {
           v-model="email"
         ></el-input>
       </el-form-item>
+
+      <div v-if="emailError">
+        <el-button plain type="danger" disabled><el-icon><WarnTriangleFilled /></el-icon>
+          {{ emailError }}
+        </el-button><br>
+      </div>
 
       <el-form-item label="Password" prop="pass">
         <el-input
@@ -111,6 +190,12 @@ function register() {
           v-model="password"
         ></el-input>
       </el-form-item>
+
+      <div v-if="passwordError">
+        <el-button plain type="danger" disabled><el-icon><WarnTriangleFilled /></el-icon>
+          {{ passwordError }}
+        </el-button><br>
+      </div>
 
       <el-form-item label-width="auto" label="Confirm Password" prop="pass">
         <el-input
