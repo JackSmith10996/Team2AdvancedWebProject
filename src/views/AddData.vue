@@ -124,7 +124,7 @@ const router = useRouter();
         </el-form-item>
 
         <el-form-item>
-      <el-button type="danger" @click="submitData">Submit</el-button>
+      <el-button type="danger" @click="updateData">Submit</el-button>
       <router-link :to="{ name: 'Home' }"
         ><el-button>Cancel</el-button></router-link
       >
