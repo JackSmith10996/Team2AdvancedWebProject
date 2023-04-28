@@ -6,7 +6,7 @@
       <button class="nav-button"><RouterLink to="/" class="nav-item">Home</RouterLink></button>
       <button class="nav-button"><RouterLink to="/help" class="nav-item">Help</RouterLink></button>
       <button class="nav-button"><RouterLink to="/News" class="nav-item">News Feed</RouterLink></button>
-      <button class="nav-button"><RouterLink to="/AddData" v-if="user" class="nav-item">Add Data</RouterLink></button>
+      <button class="nav-button"><RouterLink to="/AddData" class="nav-item">Add Data</RouterLink></button>
       <button class="nav-button"><RouterLink to="/Login" v-if="!user" class="nav-item">Login</RouterLink></button>
       <button class = "logout" color= "transparent"  @click = "logout" v-if="user">Logout {{user}}</button>
       <div class="search">
