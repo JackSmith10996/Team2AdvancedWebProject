@@ -15,7 +15,21 @@ const resv = ref("");
 const rsv = ref("");
 const rvef = ref("");
 
-const docRef = doc(database, "MyCardiopathy", /*User ID*/)
+const data = {
+    ledv: ledv,
+    lesv: lesv,
+    lsv: lsv,
+    lvef: lvef,
+    lvmass: lvmass,
+    redv: redv,
+    resv: resv,
+    rsv: rsv,
+    rvef: rvef
+}
+
+await setDoc(doc(db, "MyCardiomyopathy", /*User ID*/), data);
+
+const docRef = doc(database, "MyCardiomyopathy", /*User ID*/)
 
 const updateData = await updateDoc(docRef, {
     ledv: ledv,
