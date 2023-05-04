@@ -4,11 +4,11 @@
     <h2 class="logo">Cardiomyopathy</h2>
     <div class="navbar-items">
       <button class="nav-button"><RouterLink to="/" class="nav-item">Home</RouterLink></button>
-      <button class="nav-button"><RouterLink to="/help" class="nav-item">Help</RouterLink></button>
       <button class="nav-button"><RouterLink to="/News" class="nav-item">News Feed</RouterLink></button>
-      <button class="nav-button"><RouterLink to="/AddData" class="nav-item">Add Data</RouterLink></button>
+      <button class="nav-button"><RouterLink to="/AddData" v-if="user" class="nav-item">Add Data</RouterLink></button>
+      <button class="nav-button"><RouterLink to="/help" class="nav-item">Help</RouterLink></button>
       <button class="nav-button"><RouterLink to="/Login" v-if="!user" class="nav-item">Login</RouterLink></button>
-      <button class = "logout" color= "transparent"  @click = "logout" v-if="user">Logout {{user}}</button>
+      <button  class = "logout" color= "transparent"  @click = "logout" v-if="user">Logout {{user}}</button>
       <div class="search">
       <input
         v-model="input2"
@@ -75,9 +75,12 @@ h1{
 
 }
 .logout{
-
-  margin-top: 10px;
-
+  float: right;
+  font-size: 15px;
+  margin-top: -60px;
+  background-color: white;
+  border: 0;
+  cursor: pointer;
 
 }
 

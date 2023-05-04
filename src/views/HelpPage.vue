@@ -17,18 +17,18 @@
     <details>
         <summary>How to login?</summary>
         <div>
-            To login, find the <em>"Login"</em> button in the navigation bar then type your email and password you typed during registratoin and click login.
+            To login, find the <em>"Login"</em> button in the navigation bar then type your email and password you typed during registration and click login.
         </div>
     </details><br>
     <details>
         <summary>Can't login / reset password.</summary>
         <div>
-            If you are having trouble logging in or simply you wish to reset your passwprd click on the <em>"Login"</em> button in the navigation bar
+            If you are having trouble logging in or simply you wish to reset your password click on the <em>"Login"</em> button in the navigation bar
             then choose <em>"Forgotten Password"</em>, type your email address and click reset password. You will then receive an email with a link to change your password.
         </div>
     </details><br>
     <details>
-        <summary>How to adding data?</summary>
+        <summary>How to add data?</summary>
         <div>
            To add data to our database click on the <em>"Add Data"</em> button in the navigation bar
            then fill in the data you wish to add and click <em>"Submit"</em>.

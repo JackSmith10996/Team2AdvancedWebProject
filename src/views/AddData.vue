@@ -27,11 +27,11 @@ const data = {
     rvef: rvef
 }
 
-await setDoc(doc(db, "MyCardiomyopathy", /*User ID*/), data);
+//await setDoc(doc(db, "MyCardiomyopathy", /*User ID*/), data);
 
-const docRef = doc(database, "MyCardiomyopathy", /*User ID*/)
+//const docRef = doc(database, "MyCardiomyopathy", /*User ID*/)
 
-const updateData = await updateDoc(docRef, {
+/*const updateData = await updateDoc(docRef, {
     ledv: ledv,
     lesv: lesv,
     lsv: lsv,
@@ -46,106 +46,121 @@ const updateData = await updateDoc(docRef, {
 const updateTimestamp = await updateDoc(docRef, {
     timestamp: serverTimestamp()
 });
-
+*/
 const router = useRouter();
 
 </script>
 
 <template>
-    <el-form label-width="95px" class="demo-ruleForm" @submit.prevent>
-    <h2>Add Data</h2>
+    <div class="addData-section">
+        <el-form label-width="95px" class="demo-ruleForm" @submit.prevent>
+        <h2 id="heading">Add Data</h2><br>
 
-        <el-form-item label="ledv">
-            <el-input
-            type="text"
-            placeholder="ledv"
-            required
-            autocomplete="off"
-            v-model="levd"
-            ></el-input>
-        </el-form-item>
-        <el-form-item label="lesv">
-            <el-input
-            type="text"
-            placeholder="lesv"
-            required
-            autocomplete="off"
-            v-model="lesv"
-            ></el-input>
-        </el-form-item>
-        <el-form-item label="lsv">
-            <el-input
-            type="text"
-            placeholder="lsv"
-            required
-            autocomplete="off"
-            v-model="lsv"
-            ></el-input>
-        </el-form-item>
-        <el-form-item label="lvef">
-            <el-input
-            type="text"
-            placeholder="lvef"
-            required
-            autocomplete="off"
-            v-model="lvef"
-            ></el-input>
-        </el-form-item>
-        <el-form-item label="lvmass">
-            <el-input
-            type="text"
-            placeholder="lvmass"
-            required
-            autocomplete="off"
-            v-model="lvmass"
-            ></el-input>
-        </el-form-item>
-        <el-form-item label="redv">
-            <el-input
-            type="text"
-            placeholder="redv"
-            required
-            autocomplete="off"
-            v-model="redv"
-            ></el-input>
-        </el-form-item>
-        <el-form-item label="resv">
-            <el-input
-            type="text"
-            placeholder="resv"
-            required
-            autocomplete="off"
-            v-model="resv"
-            ></el-input>
-        </el-form-item>
-        <el-form-item label="rsv">
-            <el-input
-            type="text"
-            placeholder="rsv"
-            required
-            autocomplete="off"
-            v-model="rsv"
-            ></el-input>
-        </el-form-item>
-        <el-form-item label="rvef">
-            <el-input
-            type="text"
-            placeholder="rvef"
-            required
-            autocomplete="off"
-            v-model="rvef"
-            ></el-input>
-        </el-form-item>
+            <el-form-item label="ledv">
+                <el-input
+                type="text"
+                placeholder="ledv"
+                required
+                autocomplete="off"
+                v-model="ledv"
+                ></el-input>
+            </el-form-item>
+            <el-form-item label="lesv">
+                <el-input
+                type="text"
+                placeholder="lesv"
+                required
+                autocomplete="off"
+                v-model="lesv"
+                ></el-input>
+            </el-form-item>
+            <el-form-item label="lsv">
+                <el-input
+                type="text"
+                placeholder="lsv"
+                required
+                autocomplete="off"
+                v-model="lsv"
+                ></el-input>
+            </el-form-item>
+            <el-form-item label="lvef">
+                <el-input
+                type="text"
+                placeholder="lvef"
+                required
+                autocomplete="off"
+                v-model="lvef"
+                ></el-input>
+            </el-form-item>
+            <el-form-item label="lvmass">
+                <el-input
+                type="text"
+                placeholder="lvmass"
+                required
+                autocomplete="off"
+                v-model="lvmass"
+                ></el-input>
+            </el-form-item>
+            <el-form-item label="redv">
+                <el-input
+                type="text"
+                placeholder="redv"
+                required
+                autocomplete="off"
+                v-model="redv"
+                ></el-input>
+            </el-form-item>
+            <el-form-item label="resv">
+                <el-input
+                type="text"
+                placeholder="resv"
+                required
+                autocomplete="off"
+                v-model="resv"
+                ></el-input>
+            </el-form-item>
+            <el-form-item label="rsv">
+                <el-input
+                type="text"
+                placeholder="rsv"
+                required
+                autocomplete="off"
+                v-model="rsv"
+                ></el-input>
+            </el-form-item>
+            <el-form-item label="rvef">
+                <el-input
+                type="text"
+                placeholder="rvef"
+                required
+                autocomplete="off"
+                v-model="rvef"
+                ></el-input>
+            </el-form-item>
 
-        <el-form-item>
-      <el-button type="danger" @click="updateData">Submit</el-button>
-      <router-link :to="{ name: 'Home' }"
-        ><el-button>Cancel</el-button></router-link
-      >
-    </el-form-item>
-        
-    </el-form>
-
+            <el-form-item>
+        <el-button type="danger" @click="updateData">Submit</el-button>
+        <router-link :to="{ name: 'Home' }"
+            ><el-button id="cancel-btn">Cancel</el-button></router-link
+        >
+        </el-form-item>
+            
+        </el-form>
+    </div>
 </template>
 
-<style></style>
+<style>
+.addData-section{
+  display: inline-block;
+  margin-left: 35%;
+  margin-top: 2%;
+}
+
+#heading{
+    margin-left: 40%;
+}
+
+#cancel-btn{
+    margin-left: 20%;
+}
+</style>

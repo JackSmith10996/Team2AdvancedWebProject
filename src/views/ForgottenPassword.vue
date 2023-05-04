@@ -25,29 +25,39 @@ function ResetPass(){
 </script>
 
 <template>
-  <el-form label-width="50px" @submit.prevent>
-    <h2>Forgotten Password</h2>
+  <div class="form-section"><br>
+    <el-form label-width="50px" @submit.prevent>
+      <h2>Forgotten Password</h2><br>
 
-    <el-form-item label="Email">
-      <el-input
-        type="email"
-        placeholder="email"
-        required
-        autocomplete="off"
-        v-model="email"
-      ></el-input>
-    </el-form-item>
+      <el-form-item label="Email">
+        <el-input
+          type="email"
+          placeholder="email"
+          required
+          autocomplete="off"
+          v-model="email"
+        ></el-input>
+      </el-form-item>
 
 
-    <el-form-item>
-      <el-button type="success" style="margin: auto" @click="ResetPass">
-        Reset Password
-      </el-button>
-    </el-form-item>
-  </el-form>
+      <el-form-item>
+        <el-button id="reset-btn" type="success" style="margin: auto" @click="ResetPass">
+          Reset Password
+        </el-button>
+      </el-form-item>
+    </el-form>
+  </div>  
 </template>
 <style>
+.form-section{
+  margin-left: 40%;
+  display: inline-block;
 
+}
+
+#reset-btn{
+  margin-right: 10%;
+}
 
 
 </style>
