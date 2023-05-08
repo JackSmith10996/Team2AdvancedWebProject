@@ -32,9 +32,9 @@ watch(confirmPassword, () => {
 
 watch(firstName, () => {
   if (
-    firstName.value == "" || firstName.value.length < 3
+    !/^[A-Za-z]+$/.test(firstName.value) || firstName.value == "" || firstName.value.length < 3
   ) {
-    firstNameError.value = "Please enter at least a 3 characters long First Name!";
+    firstNameError.value = "Please enter a valid 3 letters long First Name!";
   } else {
     firstNameError.value = null;
   }
@@ -42,9 +42,9 @@ watch(firstName, () => {
 
 watch(surname, () => {
   if (
-    surname.value == "" || surname.value.length < 3
+    !/^[A-Za-z]+$/.test(surname.value) || surname.value == "" || surname.value.length < 3
   ) {
-    surnameError.value = "Please enter at least a 3 characters long surname!";
+    surnameError.value = "Please enter a valid 3 letters long surname!";
   } else {
     surnameError.value = null;
   }
@@ -62,7 +62,7 @@ watch(displayName, () => {
 
 watch(email, () => {
   if (
-   !email.value.includes("@"&&".") && email.value !== "" || email.value.length < 3 
+   !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value) && email.value !== "" || email.value.length < 3 
   ) {
     emailError.value = "Please enter a valid Email Addess!";
   } else {
