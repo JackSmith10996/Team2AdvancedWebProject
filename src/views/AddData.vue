@@ -10,23 +10,56 @@ const lesv = ref("");
 const lsv = ref("");
 const lvef = ref("");
 const lvmass = ref("");
+const rvmass = ref("");
 const redv = ref("");
 const resv = ref("");
 const rsv = ref("");
 const rvef = ref("");
+const scar = ref("");
+const female = ref("");
+const age = ref("");
+const ApicalHCM = ref("");
+const SuddenCardiacDeath = ref("");
+const hypertension = ref("");
+const diabetes = ref("");
+const myectomy = ref("");
+
+//store errors
 const ledvError = ref("");
 const lesvError = ref("");
 const lsvError = ref("");
 const lvefError = ref("");
 const lvmassError = ref("");
+const rvmassError = ref("");
 const redvError= ref("");
 const resvError = ref("");
 const rsvError = ref("");
 const rvefError = ref("");
+const ageError = ref("");
+
+const gender = [
+  {
+    value: '0',
+    label: 'Male',
+  },
+  {
+    value: '1',
+    label: 'Female',
+  }]
+
+  const yesOrNo = [
+  {
+    value: '0',
+    label: 'No',
+  },
+  {
+    value: '1',
+    label: 'Yes',
+  }]
 
 watch(ledv, () => {
   if ( 
-        !/^[0-9]+$/.test(ledv.value) || ledv.value == ""||  ledv.value == null || ledv.value < 0 || ledv.value > 220
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(ledv.value) || ledv.value == ""||  ledv.value == null || ledv.value < 0 || ledv.value > 220
   ) {
     ledvError.value = "Please only enter numbers and ledv value between 0 and 220!";
   } else {
@@ -36,7 +69,7 @@ watch(ledv, () => {
 
 watch(lesv, () => {
   if ( 
-        !/^[0-9]+$/.test(lesv.value) || lesv.value == ""||  lesv.value == null || lesv.value < 0 || lesv.value > 220
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(lesv.value) || lesv.value == ""||  lesv.value == null || lesv.value < 0 || lesv.value > 220
   ) {
     lesvError.value = "Please only enter numbers and lesv value between 0 and 220!";
   } else {
@@ -46,7 +79,7 @@ watch(lesv, () => {
 
 watch(lsv, () => {
   if ( 
-        !/^[0-9]+$/.test(lsv.value) || lsv.value == ""||  lsv.value == null || lsv.value < 0 || lsv.value > 220
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(lsv.value) || lsv.value == ""||  lsv.value == null || lsv.value < 0 || lsv.value > 220
   ) {
     lsvError.value = "Please only enter numbers and lsv value between 0 and 220!";
   } else {
@@ -56,7 +89,7 @@ watch(lsv, () => {
 
 watch(lvef, () => {
   if ( 
-        !/^[0-9]+$/.test(lvef.value) || lvef.value == ""||  lvef.value == null || lvef.value < 0 || lvef.value > 220
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(lvef.value) || lvef.value == ""||  lvef.value == null || lvef.value < 0 || lvef.value > 220
   ) {
     lvefError.value = "Please only enter numbers and lvef value between 0 and 220!";
   } else {
@@ -66,7 +99,7 @@ watch(lvef, () => {
 
 watch(lvmass, () => {
   if ( 
-        !/^[0-9]+$/.test(lvmass.value) || lvmass.value == ""||  lvmass.value == null || lvmass.value < 0 || lvmass.value > 220
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(lvmass.value) || lvmass.value == ""||  lvmass.value == null || lvmass.value < 0 || lvmass.value > 220
   ) {
     lvmassError.value = "Please only enter numbers and lvmass value between 0 and 220!";
   } else {
@@ -74,9 +107,19 @@ watch(lvmass, () => {
   }
 });
 
+watch(rvmass, () => {
+  if ( 
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(rvmass.value) || rvmass.value == ""||  rvmass.value == null || rvmass.value < 0 || rvmass.value > 220
+  ) {
+    rvmassError.value = "Please only enter numbers and rvmass value between 0 and 220!";
+  } else {
+    rvmassError.value = null;
+  }
+});
+
 watch(redv, () => {
   if ( 
-        !/^[0-9]+$/.test(redv.value) || redv.value == ""||  redv.value == null || redv.value < 0 || redv.value > 220
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(redv.value) || redv.value == ""||  redv.value == null || redv.value < 0 || redv.value > 220
   ) {
     redvError.value = "Please only enter numbers and redv value between 0 and 220!";
   } else {
@@ -86,7 +129,7 @@ watch(redv, () => {
 
 watch(resv, () => {
   if ( 
-        !/^[0-9]+$/.test(resv.value) || resv.value == ""||  resv.value == null || resv.value < 0 || resv.value > 220
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(resv.value) || resv.value == ""||  resv.value == null || resv.value < 0 || resv.value > 220
   ) {
     resvError.value = "Please only enter numbers and resv value between 0 and 220!";
   } else {
@@ -96,7 +139,7 @@ watch(resv, () => {
 
 watch(rsv, () => {
   if ( 
-        !/^[0-9]+$/.test(rsv.value) || rsv.value == ""||  rsv.value == null || rsv.value < 0 || rsv.value > 220
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(rsv.value) || rsv.value == ""||  rsv.value == null || rsv.value < 0 || rsv.value > 220
   ) {
     rsvError.value = "Please only enter numbers and rsv value between 0 and 220!";
   } else {
@@ -106,7 +149,7 @@ watch(rsv, () => {
 
 watch(rvef, () => {
   if ( 
-        !/^[0-9]+$/.test(rvef.value) || rvef.value == ""||  rvef.value == null || rvef.value < 0 || rvef.value > 220
+        !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(rvef.value) || rvef.value == ""||  rvef.value == null || rvef.value < 0 || rvef.value > 220
   ) {
     rvefError.value = "Please only enter numbers and rvef value between 0 and 220!";
   } else {
@@ -114,12 +157,23 @@ watch(rvef, () => {
   }
 });
 
+watch(age, () => {
+  if ( 
+    !/^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)$/.test(age.value) ||  age.value == ""||  age.value == null || age.value >= 100 || age.value < 0
+  ) {
+    ageError.value = "Please enter a valid age less than a 100!";
+  } else {
+    ageError.value = null;
+  }
+});
+
+
 
 
 const router = useRouter();
 
 const addDataToFirestore = async () => {
-    if (!ledvError.value && !lesvError.value && !lsvError.value &&  !lvefError.value && !lvmassError.value && !redvError.value && !resvError.value && !rsvError.value && !rvefError.value) {
+    if (!ledvError.value && !lesvError.value && !lsvError.value &&  !lvefError.value && !lvmassError.value && !rvmassError.value && !redvError.value && !resvError.value && !rsvError.value && !rvefError.value &&!ageError.value) {
         try {
             const data = {
             ledv: parseFloat(ledv.value),
@@ -127,10 +181,19 @@ const addDataToFirestore = async () => {
             lsv: parseFloat(lsv.value),
             lvef: parseFloat(lvef.value),
             lvmass: parseFloat(lvmass.value),
+            rvmass: parseFloat(rvmass.value),
             redv: parseFloat(redv.value),
             resv: parseFloat(resv.value),
             rsv: parseFloat(rsv.value),
-            rvef: parseFloat(rvef.value)
+            rvef: parseFloat(rvef.value),
+            scar: parseFloat(scar.value),
+            female: parseFloat(female.value),
+            AgeatMRI: parseFloat(age.value),
+            ApicalHCM: parseFloat(ApicalHCM.value),
+            SuddenCardiacDeath: parseFloat(SuddenCardiacDeath.value),
+            Hypertension: parseFloat(hypertension.value),
+            diabetes: parseFloat(diabetes.value),
+            myectomy: parseFloat(myectomy.value)
             };
 
             const randomId = Math.floor(Math.random() * 1000000);
@@ -232,6 +295,22 @@ const addDataToFirestore = async () => {
     </el-button><br>
 </div>
 
+<el-form-item label="rvmass">
+  <el-input
+    type="text"
+    placeholder="rvmass"
+    required
+    autocomplete="off"
+    v-model="rvmass"
+  ></el-input>
+</el-form-item>
+
+<div v-if="rvmassError">     
+    <el-button plain type="danger" disabled><el-icon><WarnTriangleFilled /></el-icon>
+        {{ rvmassError }}
+    </el-button><br>
+</div>
+
 <el-form-item label="redv">
   <el-input
     type="text"
@@ -295,15 +374,108 @@ const addDataToFirestore = async () => {
         {{ rvefError }}
     </el-button><br>
 </div>
+
+<el-form-item label="Scar">
+  <el-select v-model="scar" placeholder="Scar">
+    <el-option
+      v-for="item in yesOrNo"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
+</el-form-item>
+
+<el-form-item label="Gender">
+  <el-select v-model="female" placeholder="Select Gender">
+    <el-option
+      v-for="item in gender"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
+</el-form-item>
+
+<el-form-item label="Age at MRI">
+  <el-input
+    type="text"
+    placeholder="Age at MRI"
+    required
+    autocomplete="off"
+    v-model="age"
+  ></el-input>
+</el-form-item>
+
+<div v-if="ageError">     
+    <el-button plain type="danger" disabled><el-icon><WarnTriangleFilled /></el-icon>
+        {{ ageError }}
+    </el-button><br>
+</div>
+
+<el-form-item label="Apical HCM">
+  <el-select v-model="ApicalHCM" placeholder="Apical HCM">
+    <el-option
+      v-for="item in yesOrNo"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
+</el-form-item>
+
+<el-form-item label="SCD">
+  <el-select v-model="SuddenCardiacDeath" placeholder="Sudden Cardiac Death">
+    <el-option
+      v-for="item in yesOrNo"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
+</el-form-item>
+
+<el-form-item label="hypertension">
+  <el-select v-model="hypertension" placeholder="hypertension">
+    <el-option
+      v-for="item in yesOrNo"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
+</el-form-item>
+
+<el-form-item label="diabetes">
+  <el-select v-model="diabetes" placeholder="diabetes">
+    <el-option
+      v-for="item in yesOrNo"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
+</el-form-item>
+
+<el-form-item label="myectomy">
+  <el-select v-model="myectomy" placeholder="myectomy">
+    <el-option
+      v-for="item in yesOrNo"
+      :key="item.value"
+      :label="item.label"
+      :value="item.value"
+    />
+  </el-select>
+</el-form-item>
         
         
   
         <el-form-item>
-          <el-button type="danger" @click="addDataToFirestore">Submit</el-button>
-          <router-link :to="{ name: 'Home' }">
-            <el-button id="cancel-btn">Cancel</el-button>
-          </router-link>
-        </el-form-item>
+            <el-button type="danger" @click="addDataToFirestore">Submit</el-button>
+            <router-link :to="{ name: 'Home' }">
+              <el-button id="cancel-btn">Cancel</el-button>
+            </router-link>
+          </el-form-item>
       </el-form>
     </div>
   </template>
